@@ -9,12 +9,17 @@
             }
         },
         grid: {
-            top: 10,
+            top: 20,
             left: 0,
             right: 0,
             bottom: '4%',
             containLabel: true
         },
+        dataZoom: [
+            {
+                type: 'inside'
+            }
+        ],
         xAxis: {
             type: 'category',
             axisTick: {
@@ -61,6 +66,31 @@
                 itemStyle: {
                     // barBorderRadius:10,
                     barBorderRadius: [5, 5, 0, 0]
+                },
+                markPoint: {
+                    symbolSize: 30,
+                    data: [
+                        {
+                            type: 'max',
+                            name: '最大值'
+                        },
+                        {
+                            type: 'min',
+                            name: '最小值'
+                        }
+                    ]
+                },
+                markLine: {
+                    label: {
+                        color: '#fff',
+                        position: 'insideEndTop'
+                    },
+                    data: [
+                        {
+                            type: 'average',
+                            name: '平均值',
+                        }
+                    ]
                 },
                 data: [110, 114, 107, 92, 97, 90, 89, 95, 98]
             }
@@ -207,6 +237,7 @@
         xAxis: {
             type: 'category',
             boundaryGap: false,
+            // scale: true,
             axisTick: {
                 show: false
             },
@@ -237,12 +268,30 @@
                 name: '新增粉丝',
                 type: 'line',
                 smooth: true,
+                markArea: {
+                    label: { color: 'inherit' },
+                    data: [
+                        [
+                            { type: 'average', name: '平均值到最大值' },
+                            { type: 'max' }
+                        ]
+                    ]
+                },
                 data: yearData[0].data[0]
             },
             {
                 name: '新增游客',
                 type: 'line',
                 smooth: true,
+                markArea: {
+                    label: { color: 'inherit' },
+                    data: [
+                        [
+                            { type: 'average', name: '平均值到最大值' },
+                            { type: 'max' }
+                        ]
+                    ]
+                },
                 data: yearData[0].data[1]
             }
         ]
@@ -517,6 +566,7 @@
                 type: 'pie',
                 radius: ['10%', '70%'],
                 roseType: 'radius',
+                selectedMode: 'multiple',
                 label: {
                     fontSize: 10,
                     color: 'inherit'
